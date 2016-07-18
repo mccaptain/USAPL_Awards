@@ -1,4 +1,5 @@
 from sys import argv
+import os
 
 import openpyxl
 from collections import deque
@@ -12,6 +13,48 @@ sheet = wb.get_sheet_by_name('Lifting')
 maxcol = sheet.max_column
 maxrow = sheet.max_row
 
+#clear warnings
+os.system('cls')
+
+print  """
+                                                                        
+          ''';''+;';+                                                   
+         ;;;+;;'';;++                                                   
+        `;;+;;;+;;'++                                                   
+        ;;;+;;'';;+++                                                   
+        ;;+;;;+;;;+++                                                   
+       :;;+;;;+;;++.::::,      :::::   ,:::::::::::::        .::::      
+       ;;;+;;+;;;++`;;;;      `;;;;` `;;;;;;;;;;;;;;,       ,;;;;;.     
+      `;;+;;;+;;'++;;;;;      :;;;;  ;;;;;;;;;;;;;;;       ,;;;;;;;     
+      :;;+;;;';;++`;;;;,      ;;;;: ;;;;;                 :;;;;;;;;     
+      ;;;+;;+;;;++`;;;;      `;;;;  ;;;;;;;;;;;;;,       :;;;;:;;;;:    
+     `;;+;;;+;;'+';;;;;      :;;;;  ;;;;;;;;;;;;;;`     :;;;;. ;;;;;    
+     :;;+;;;+;;++`;;;;,      ;;;;:  `;;;;;;;;;;;;;:    :;;;;.  ;;;;;`   
+     ;;;+;;+;;;++.;;;;      `;;;;            `;;;;,   ;;;;;`   .;;;;;   
+     ;;'';;+;;;++:;;;;;;;;;;;;;;; ,;;;;;;;;;;;;;;;   ;;;;;;;;;;:;;;;;   
+    .;;+;;;+;;+++`;;;;;;;;;;;;;;  ;;;;;;;;;;;;;;;   ;;;;;;;;;;: :;;;;,  
+  ..:;;+;;;';;+++,:;;;;;;;;;;;,   ;;;;;;;;;;;;;:   ;;;;;;;;;;:  `;;;;;  
+  ;;;;;+;;+;;;++,::::::::::::::::::::::::::::::::::::::::::::::::;;;;;` 
+ .;;;;+';;+;;;+.;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;: 
+ .++;;+;;;+;;++,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, 
+   :;;+;;;+;;+++ ++++ ++++`+ .+ ',++++ ++++ +   + ++++++++:+ ++  + ++++ 
+   ;;;+;;';;;+++;;`,+''``+`+ ++ + +   ;;``+`+   + +   `:'` +`++ ,+''  + 
+   ;;'+;;+;;;++'+..+:+   + +.:+;,;+++ +,.';':  ,':+++  +. :';;+;+.+ +++ 
+   +++'+++++;++`++++ +  ,+ ++ ++ +    ++++ +   +.+,,,  +  +`+ ;++ + `': 
+  `+++;+'+++'++,+   `++++` +, +, ++++.+  + +++,+ +    `+  + + `++`++++  
+  ,+++'+;++++++'                                                        
+  ;+'+++''++++:;                                                        
+  '+;+++';++++++                                                        
+  ++;++++;+'++++                                                        
+  ++''+++'+;+++.                                                        
+  ++''+++++;+++                                                         
+  +++'+++++;+++                                                         
+  +++'+++++;++.                                                         
+  ++''+++'+;++                                                          
+  ;;;+;;':;;+                                                           
+                                                                        
+
+"""
 namec = 2
 divweightc = 80
 placec = 82
@@ -37,16 +80,18 @@ for hum in theLifters:
 		awards[hum.divw] = [hum]
 
 for key in awards.keys():
+	winners = dict()
 	lifters = awards[key]
 	print "%s Class %s Event" % key
 	for lifter in lifters:
-		if lifter.place == 1:
-			print "\tFirst Place: %s wilks %r" % ( lifter.name, lifter.wilks )
-	for lifter in lifters:
-		if lifter.place == 2:
-			print "\tSecond Place: %s wilks %r" % ( lifter.name, lifter.wilks )
-	for lifter in lifters:
-		if lifter.place == 3:
-			print "\tThird Place: %s wilks %r" % ( lifter.name, lifter.wilks )
+		winners[lifter.place] = lifter
+
+	if 1 in winners:
+		print "\tFirst Place: %s wilks %r" % ( winners[1].name, winners[1].wilks )
+	if 2 in winners:
+		print "\tSecond Place: %s wilks %r" % ( winners[2].name, winners[2].wilks )
+	if 3 in winners:
+		print "\tThird Place: %s wilks %r" % ( winners[3].name, winners[3].wilks )
+	print "\n"
 	
 raw_input()
